@@ -3,6 +3,7 @@
 ###############################################################################
 /vendor/
 /node_modules/
+/tests/
 /public/build/
 /public/hot
 /public/storage
