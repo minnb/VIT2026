@@ -1,0 +1,1064 @@
+/* =========================================================================
+   VIT UI — lớp override giao diện public (flat, hiện đại, tối ưu CRO)
+   Nạp SAU style.css + responsive.css. Không sửa file theme gốc.
+   Gỡ bỏ: xoá thẻ <link> trong resources/views/home/partials/head.blade.php
+   ========================================================================= */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+    /* Mau do truc tiep tu public/home/images/logo.jpg */
+    --vit-navy:      #2F5085;   /* hinh thoi tren + chu VITDUCT */
+    --vit-navy-d:    #24406C;
+    --vit-navy-l:    #3C63A0;
+    --vit-green:     #00A859;   /* hinh thoi duoi */
+    --vit-green-d:   #008847;
+
+    --vit-primary:   #2F5085;   /* mau chinh = navy thuong hieu */
+    --vit-primary-d: #24406C;
+    --vit-cta:       #f97316;   /* cam: chi dung cho nut chuyen doi */
+    --vit-cta-d:     #ea580c;
+
+    --vit-ink:       #111827;
+    --vit-muted:     #6b7280;
+    --vit-border:    #e5e7eb;
+    --vit-bg-soft:   #f8fafc;
+    --vit-radius:    8px;
+    --vit-shadow:    0 8px 24px rgba(17, 24, 39, .10);
+    --vit-ease:      .25s ease;
+
+    /* Chieu cao khung anh san pham - doi theo breakpoint o muc 8 */
+    --vit-thumb-h:   240px;
+
+    --vit-topbar-h:  34px;
+    --vit-nav-h:     52px;
+}
+
+/* ---------- 2. Nền & khoảng thở ---------- */
+body { color: var(--vit-ink); }
+
+.jtv-featured-pro,
+.jtv-latest-blog,
+.jtv-static-banner3,
+.jtv-service-block { padding-top: 40px; padding-bottom: 40px; }
+
+.jtv-featured-pro .jtv-title,
+.jtv-latest-blog .jtv-title { margin-bottom: 28px; }
+
+/* ---------- 3. Topbar / Header / Nav ---------- */
+
+/* Theme khoa sticky bang 3 lop: html{overflow-x:hidden} (style.css:3857),
+   #page{overflow:hidden} (style.css:3862). Ca 3 deu la to tien cua <nav>, va
+   CHI CAN MOT lop con "overflow khac visible" la du lam position:sticky mat
+   tac dung (da verify bang headless Chrome: bo rieng html{overflow-x:hidden}
+   la sticky chay dung ngay, dung ca 2 file CSS that cua site). Mo khoa het o
+   day va chuyen nhiem vu chong tran ngang xuong body (khong phai to tien cua
+   nav trong pham vi anh huong toi sticky trong test da chay). */
+html  { overflow-x: visible; }
+#page { overflow: visible; }
+body  { overflow-x: hidden; }
+
+/* --- 3a. Topbar --- */
+.vit-topbar {
+    background: var(--vit-bg-soft);          /* nen sang: chi nav la dai dam duy nhat */
+    border-bottom: 1px solid var(--vit-border);
+    color: var(--vit-muted);
+    font-size: 13px;
+    line-height: var(--vit-topbar-h);
+}
+.vit-topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.vit-topbar__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-width: 0;
+}
+.vit-topbar__info li {
+    display: flex;
+    align-items: center;
+    max-width: 62vw;
+    gap: 7px;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.vit-topbar__info i { color: var(--vit-green); }
+.vit-topbar a { color: inherit; transition: color var(--vit-ease); }
+.vit-topbar a:hover { color: var(--vit-navy); text-decoration: none; }
+.vit-topbar__social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(47, 80, 133, .10);
+    color: var(--vit-navy);
+    flex: 0 0 auto;
+    transition: background-color var(--vit-ease), color var(--vit-ease);
+}
+.vit-topbar__social:hover { background: var(--vit-navy); color: #fff; }
+
+/* --- 3b. Header --- */
+header .header-container {
+    background: #fff;
+}
+.vit-header {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 0;
+}
+.vit-header__brand { flex: 0 0 auto; }
+.vit-logo { display: block; }
+.vit-logo img {
+    display: block;
+    height: 64px;
+    width: auto;
+}
+.vit-tagline {
+    margin: 4px 0 0;
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--vit-muted);
+}
+
+/* O tim kiem: gop input + nut lam mot khoi bo tron.
+   Thay cho .input-group cua Bootstrap 4 vi markup cu thieu
+   .input-group-append nen sinh ra mot o trang thua. */
+.vit-header__search { flex: 1 1 auto; min-width: 0; }
+.vit-search {
+    display: flex;
+    align-items: stretch;
+    max-width: 560px;
+    height: 46px;
+    border: 1px solid var(--vit-border);
+    border-radius: 999px;
+    background: #fff;
+    overflow: hidden;
+    transition: border-color var(--vit-ease), box-shadow var(--vit-ease);
+}
+.vit-search:focus-within {
+    border-color: var(--vit-navy);
+    box-shadow: 0 0 0 3px rgba(47, 80, 133, .12);
+}
+.vit-search__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 0 8px 0 20px;
+    font-size: 14px;
+    color: var(--vit-ink);
+}
+.vit-search__input::placeholder { color: #9ca3af; }
+.vit-search__btn {
+    flex: 0 0 auto;
+    width: 52px;
+    border: 0;
+    background: var(--vit-navy);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color var(--vit-ease);
+}
+.vit-search__btn:hover { background: var(--vit-navy-d); }
+
+/* --- 3c. Cum CTA --- */
+.vit-header__cta {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.vit-hotline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--vit-ink) !important;
+    text-decoration: none;
+}
+.vit-hotline:hover { text-decoration: none; }
+.vit-hotline__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(47, 80, 133, .10);
+    color: var(--vit-navy);
+    font-size: 17px;
+    flex: 0 0 auto;
+}
+.vit-hotline__text { display: flex; flex-direction: column; line-height: 1.25; }
+.vit-hotline__text small { font-size: 12px; color: var(--vit-muted); }
+.vit-hotline__text strong {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--vit-navy);
+    white-space: nowrap;
+}
+.vit-quote {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: var(--vit-cta);
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, .32);
+    transition: background-color var(--vit-ease), transform var(--vit-ease), box-shadow var(--vit-ease);
+}
+.vit-quote:hover {
+    background: var(--vit-cta-d);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(249, 115, 22, .42);
+    text-decoration: none;
+}
+
+/* --- 3d. Nav --- */
+nav.vit-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: var(--vit-navy);   /* thay do #e83f33 cua theme cho khop logo */
+    box-shadow: 0 2px 12px rgba(17, 24, 39, .10);
+    transition: background-color var(--vit-ease);
+    min-height: var(--vit-nav-h);
+}
+nav.vit-nav .mega-container {
+    position: relative;
+}
+nav.vit-nav .navleft-container {
+    position: relative !important;
+    width: 100%;
+    margin: 0;
+}
+nav.vit-nav .mtmegamenu .menu-items,
+nav.vit-nav .mega-menu-category { z-index: 1000; }
+
+/* Hang nav xep bang flex thay vi float cua Bootstrap 3.
+   Ly do: .vit-mini-logo va .mm-toggle-wrap la con TRUC TIEP cua .row; khi nav
+   thu gon, mini-logo float:left cong voi col-md-3 + col-md-9 (da du 100%) lam
+   cot cuoi bi day xuong dong duoi -> nav vo thanh 3 hang. Flex khong tran dong.
+   Selector gioi han trong nav.vit-nav nen khong dong toi grid o cho khac. */
+nav.vit-nav > .container > .row {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    min-height: var(--vit-nav-h);
+}
+nav.vit-nav > .container > .row > .mega-container {
+    flex: 0 0 25%;
+    max-width: 25%;
+    float: none;
+}
+nav.vit-nav > .container > .row > .jtv-megamenu {
+    flex: 1 1 auto;
+    min-width: 0;
+    float: none;
+}
+nav.vit-nav .vit-mini-logo,
+nav.vit-nav .mm-toggle-wrap { flex: 0 0 auto; }
+
+/* Go chieu cao cung 50px cua theme (css/style.css:3395) va float:right cua muc
+   cuoi (css/style.css:3425) - hai thu nay lam "Lien he" va nut goi nhanh roi
+   xuong hang rieng. */
+nav.vit-nav .mtmegamenu {
+    height: auto;
+    display: flex;
+    align-items: center;
+    min-height: var(--vit-nav-h);
+}
+nav.vit-nav .mtmegamenu > ul.hidden-xs {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: auto;
+    margin: 0;
+    flex: 1 1 auto;   /* chiem phan con lai -> nut goi nhanh bi day sat phai */
+    min-width: 0;
+}
+nav.vit-nav .mtmegamenu > ul > li,
+nav.vit-nav .mtmegamenu > ul > li:last-child {
+    float: none;
+    margin-right: 24px;
+    padding-top: 0;
+    white-space: nowrap;
+}
+nav.vit-nav .mtmegamenu > ul > li:last-child { margin-right: 0; }
+
+/* O "Danh muc" lam diem nhan xanh la */
+nav.vit-nav .mega-menu-title,
+nav.vit-nav .mega-menu-title h3,
+nav.vit-nav .navleft-container .mega-menu-title {
+    background: var(--vit-green);
+    border: 0;
+    margin: 0;
+    cursor: pointer;
+    height: var(--vit-nav-h);
+    display: flex;
+    align-items: center;
+}
+nav.vit-nav .mega-menu-title h3 {
+    margin: 0;
+    padding: 0 15px;
+    height: var(--vit-nav-h);
+    line-height: var(--vit-nav-h);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #fff;
+    width: 100%;
+    position: relative;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;   /* chua chu va icon dinh nhau khi o "Danh muc" co lai theo noi dung */
+}
+nav.vit-nav .mega-menu-title h3::after {
+    content: "\f0c9";
+    font-family: 'FontAwesome';
+    font-size: 16px;
+    background: transparent;
+    width: auto;
+    height: auto;
+    position: static;
+    line-height: 1;
+    color: #fff;
+}
+nav.vit-nav .mega-menu-title:hover,
+nav.vit-nav .mega-menu-title:hover h3 { background: var(--vit-green-d); }
+
+/* Mega Menu Category Dropdown */
+nav.vit-nav .mega-menu-category {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid var(--vit-border);
+    border-top: 2px solid var(--vit-green);
+    box-shadow: 0 8px 24px rgba(17, 24, 39, .12);
+    max-height: 70vh;
+    overflow-y: auto;
+    /* !important la BAT BUOC: theme khai .cms-home-page .mega-menu-category
+       { display: inline-block !important } o css/style.css:4088 -> trang chu
+       luon xo san menu neu khong ghi de bang !important. */
+    display: none !important;
+}
+/* Chi mo khi nguoi dung BAM vao o "Danh muc" (vit-ui.js gan .is-open).
+   Mac dinh dong o moi trang, moi trang thai - ke ca trang chu - de khong che
+   banner slider dang chay.
+   KHONG dung :hover va KHONG dung slideDown/slideUp: jQuery ghi inline style,
+   ma inline style THUA !important -> menu se ket mo vinh vien. */
+nav.vit-nav .navleft-container.is-open .mega-menu-category {
+    display: block !important;
+}
+
+/* Style cac muc trong danh muc */
+.mega-menu-category > .nav > li > a {
+    padding: 11px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--vit-ink);
+    border-bottom: 1px solid #f1f5f9;
+    transition: all var(--vit-ease);
+    background: #fff;
+}
+.mega-menu-category > .nav > li > a:hover,
+.mega-menu-category > .nav > li.active > a {
+    background: var(--vit-bg-soft);
+    color: var(--vit-navy);
+    padding-left: 20px;
+}
+.mega-menu-category > .nav > li:last-child > a {
+    border-bottom: none;
+}
+
+/* Vit Hero Slider & Spacer */
+.main-slider {
+    margin-bottom: 24px;
+}
+.vit-hero-slider {
+    border-radius: var(--vit-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(17, 24, 39, .08);
+    background: #f8fafc;
+    position: relative;
+}
+.vit-hero-slide {
+    width: 100%;
+    height: 420px;
+    position: relative;
+    overflow: hidden;
+}
+.vit-hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.vit-hero-slider .owl-pagination {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    z-index: 10;
+}
+.vit-hero-slider .owl-page span {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+    background: rgba(255, 255, 255, .75);
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    opacity: 1;
+    transition: all var(--vit-ease);
+}
+.vit-hero-slider .owl-page.active span {
+    background: var(--vit-green);
+    border-color: var(--vit-green);
+    width: 24px;
+    border-radius: 999px;
+}
+.vit-hero-slider .owl-buttons div {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .85) !important;
+    color: var(--vit-navy) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    opacity: 0;
+    transition: all var(--vit-ease);
+}
+.vit-hero-slider:hover .owl-buttons div {
+    opacity: 1;
+}
+.vit-hero-slider .owl-prev { left: 16px; }
+.vit-hero-slider .owl-next { right: 16px; }
+.vit-hero-slider .owl-buttons div:hover {
+    background: var(--vit-green) !important;
+    color: #fff !important;
+}
+
+@media (max-width: 991px) {
+    .vit-hero-slide { height: 320px; }
+}
+@media (max-width: 767px) {
+    .vit-hero-slide { height: 210px; }
+}
+
+/* Đổi gạch chân đỏ cũ sang Xanh lá thương hiệu (#00A859) */
+.page-title:before,
+.best-title:before,
+.home-tab .tab-title:before,
+.sidebar-bar-title:before,
+.jtv-service-block .jtv-title:before {
+    background: var(--vit-green) !important;
+}
+.home-tab .tab-title h2,
+.best-title h2,
+.page-title h1,
+.page-title h2 {
+    color: var(--vit-navy);
+    font-weight: 700;
+}
+
+/* Card Catalogue Banner (sub1.jpg) */
+.jtv-banner3 {
+    border-radius: var(--vit-radius);
+    overflow: hidden !important;
+    box-shadow: 0 4px 16px rgba(17, 24, 39, .08);
+    border: 1px solid var(--vit-border);
+}
+.jtv-banner3-inner {
+    border-radius: var(--vit-radius);
+    overflow: hidden;
+}
+.jtv-banner3 .hover_content {
+    background: rgba(47, 80, 133, .88);
+    backdrop-filter: blur(4px);
+    border-radius: var(--vit-radius);
+    color: #fff;
+    padding: 16px;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    width: 85% !important;
+}
+.jtv-banner3 .hover_data .title {
+    color: var(--vit-green);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+.jtv-banner3 .hover_data span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    margin: 6px 0 10px;
+}
+.jtv-banner3 .shop-now {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    border-radius: 999px;
+    background: var(--vit-cta) !important;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, .35);
+    transition: all var(--vit-ease);
+}
+.jtv-banner3 .shop-now:hover {
+    background: var(--vit-cta-d) !important;
+    transform: translateY(-1px);
+}
+
+/* --- 3d-bis. Breadcrumbs ---
+   Breadcrumb dung the <nav class="breadcrumbs">, nen bi dinh moi quy tac
+   dat cho element `nav` (ca cua theme lan cua file nay). Tra no ve nen trang. */
+.breadcrumbs {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    width: auto;
+    z-index: auto;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--vit-border);
+}
+.breadcrumbs a { color: var(--vit-muted); }
+.breadcrumbs a:hover { color: var(--vit-navy); }
+.breadcrumbs span { color: #9ca3af; }
+.breadcrumbs [aria-current="page"] { color: var(--vit-ink); font-weight: 600; }
+
+/* --- 3e. Nav thu gon khi cuon (class .is-stuck do vit-ui.js gan) --- */
+.vit-mini-logo,
+.vit-nav-call {
+    display: none;
+    align-items: center;
+}
+/* Doi bien: moi cho dung var(--vit-nav-h) (nav, o Danh muc, mtmegamenu)
+   cung co lai 48px, khong phai khai lai chieu cao tung phan tu. */
+nav.vit-nav.is-stuck {
+    --vit-nav-h: 48px;
+    background: var(--vit-navy-d);
+}
+/* Khi thu gon, o "Danh muc" co lai vua chu (thay vi chiem tron 3 cot) de
+   mini-logo + menu + nut goi nhanh du cho tren MOT hang o man 1366-1440px. */
+nav.vit-nav.is-stuck > .container > .row > .mega-container {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+}
+nav.vit-nav.is-stuck .mega-menu-category { min-width: 260px; }
+nav.vit-nav.is-stuck .mtmegamenu > ul > li { margin-right: 18px; }
+nav.vit-nav.is-stuck .mtmegamenu > ul.hidden-xs > .mt-root > .mt-root-item { padding-top: 0; padding-bottom: 0; }
+nav.vit-nav.is-stuck .mtmegamenu > ul.hidden-xs > .mt-root > .mt-root-item > a { padding-top: 0; padding-bottom: 0; line-height: 48px; }
+nav.vit-nav.is-stuck .vit-mini-logo {
+    display: inline-flex;
+    align-self: center;
+    height: 40px;
+    padding: 0 14px 0 0;
+}
+nav.vit-nav.is-stuck .vit-mini-logo img { height: 100%; width: auto; }
+nav.vit-nav.is-stuck .vit-nav-call {
+    display: inline-flex;
+    align-self: center;
+    margin-left: 24px;   /* khoang cach toi thieu voi muc "Lien he" */
+    gap: 8px;
+    height: 32px;
+    white-space: nowrap;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: var(--vit-cta);
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+}
+nav.vit-nav.is-stuck .vit-nav-call:hover { background: var(--vit-cta-d); text-decoration: none; }
+
+/* ---------- 3f. Card tai lieu noi bat (cot trai trang chu) ----------
+   Thay cho .jtv-banner3 + sub1.jpg: anh do chi la nen xam khong mang thong tin,
+   lai gay CLS va mot request thua. Card nay dung hoan toan bang CSS theo dung
+   bang mau san co: nen navy thuong hieu, vach nhan xanh la, nut CTA cam. */
+
+/* Cot trai va cot san pham bang chieu cao nhau. Theme dat
+   .inner-box .row { display:inline-block; overflow:hidden } (style.css:7633)
+   nen phai ghi de o day. Chi tu 992px - duoi nguong do card xep mot cot. */
+@media (min-width: 992px) {
+    .inner-box .row {
+        display: flex;
+        align-items: stretch;
+        overflow: visible;
+    }
+    .inner-box .row > .top-banner { display: flex; }
+    .inner-box .row > .top-banner > .vit-doc-cta { height: 100%; }
+}
+
+.vit-doc-cta {
+    display: flex;
+    flex-direction: column;
+    /* Can giua theo chieu doc: card cao bang cot san pham (~400px) nen
+       space-between se de lai mot khoang trong lon vo nghia o giua. */
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    padding: 24px;
+    position: relative;
+    border-radius: var(--vit-radius);
+    border-top: 4px solid var(--vit-green);
+    background: linear-gradient(160deg, var(--vit-navy) 0%, var(--vit-navy-d) 100%);
+    color: #fff;
+}
+/* Cac slide xep CHONG bang grid (khong dung position:absolute) de card van
+   tu cao bang slide dai nhat -> khong nhay chieu cao khi doi tai lieu. */
+.vit-doc-cta__slides {
+    display: grid;
+}
+.vit-doc-cta__slide {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* visibility (khong chi opacity) de link trong slide an khong con bat tab */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .45s ease;
+}
+.vit-doc-cta__slide.is-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.vit-doc-cta__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+.vit-doc-cta__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .35);
+    cursor: pointer;
+    transition: background-color var(--vit-ease), width var(--vit-ease);
+}
+.vit-doc-cta__dot.is-active {
+    width: 20px;
+    border-radius: 999px;
+    background: var(--vit-green);
+}
+.vit-doc-cta__dot:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.vit-doc-cta__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .12);
+    color: var(--vit-green);
+    font-size: 20px;
+}
+.vit-doc-cta__eyebrow {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #9fe3c1;               /* xanh la nhat: du tuong phan tren nen navy */
+}
+.vit-doc-cta__title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #fff;
+    /* Tieu de tai lieu lay tu DB, do dai khong luong truoc duoc */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.vit-doc-cta__foot { margin: 0; }
+.vit-doc-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;             /* vung bam toi thieu tren mobile */
+    padding: 0 24px;
+    border-radius: 999px;
+    background: var(--vit-cta);
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    text-decoration: none !important;
+    transition: background-color var(--vit-ease);
+}
+.vit-doc-cta__btn:hover,
+.vit-doc-cta__btn:focus { background: var(--vit-cta-d); }
+.vit-doc-cta__note {
+    margin: 12px 0 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, .72);
+}
+
+@media (max-width: 991px) {
+    .vit-doc-cta { gap: 16px; padding: 20px; }
+    .vit-doc-cta__slide { gap: 16px; }
+    .vit-doc-cta__icon { margin-bottom: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vit-doc-cta__btn,
+    .vit-doc-cta__slide,
+    .vit-doc-cta__dot { transition: none; }
+}
+
+/* ---------- 4. Thẻ sản phẩm ---------- */
+.product-item .item-inner {
+    background: #fff;
+    border: 1px solid var(--vit-border);
+    border-radius: var(--vit-radius);
+    overflow: hidden;
+    padding-bottom: 16px;
+    height: 100%;
+    transition: transform var(--vit-ease), box-shadow var(--vit-ease), border-color var(--vit-ease);
+}
+.product-item .item-inner:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--vit-shadow);
+    border-color: var(--vit-primary);
+}
+
+/* ---------- Khung ảnh sản phẩm ----------
+   Yêu cầu: khung CỐ ĐỊNH, ảnh người dùng upload kích thước bất kỳ đều tự co/giãn
+   cho vừa khung, không méo, không cắt mất chi tiết; cao độ mọi thẻ bằng nhau.
+
+   Chiều cao khung đặt qua biến --vit-thumb-h (khai ở :root, đổi theo breakpoint
+   ở mục 8) để chỉ phải sửa MỘT chỗ cho mỗi cỡ màn hình.
+
+   KHÔNG dùng aspect-ratio theo chiều rộng: nếu slider chưa được JS khởi tạo,
+   thẻ sản phẩm rộng bằng cả container và ảnh sẽ cao bằng cả màn hình. */
+
+/* Gỡ kích thước px cứng của theme (.product-image{190x190}, .product-imgage-lager{265x265})
+   cho MỌI nơi dùng 2 class này — kể cả thumbnail sidebar không nằm trong .product-item. */
+.product-image,
+.product-imgage-lager,
+.product-imgage-263 {
+    width: 100% !important;
+    height: auto !important;
+    background: #fff;
+}
+
+/* ⚠️ Khung ảnh trong thẻ sản phẩm mang ĐỒNG THỜI 2 class:
+   <div class="pr-img-area product-imgage-lager"> (xem product_card.blade.php).
+   Vì vậy `height:auto!important` ở trên sẽ VÔ HIỆU HOÁ chiều cao cố định nếu
+   khai bằng selector thường — !important thắng bất kể specificity.
+   Phải khai lại kèm !important trên selector ghép để giành lại quyền. */
+.product-item .pr-img-area,
+.product-item .pr-img-area.product-image,
+.product-item .pr-img-area.product-imgage-lager,
+.product-item .pr-img-area.product-imgage-263 {
+    position: relative;
+    display: block;
+    width: 100% !important;
+    height: 240px !important;                    /* du phong: trinh duyet khong ho tro CSS variables */
+    height: var(--vit-thumb-h) !important;
+    background: #fff;
+    overflow: hidden;
+}
+.product-item .pr-img-area > a,
+.product-item .pr-img-area figure {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+/* object-fit:contain = ảnh nhỏ phóng lên vừa khung, ảnh lớn thu lại vừa khung,
+   luôn giữ đúng tỉ lệ gốc. Phần trống hai bên là nền trắng của khung. */
+.product-item .pr-img-area img,
+.product-item .pr-img-area img.first-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    padding: 12px;
+    transition: transform .35s ease;
+}
+.product-item .item-inner:hover .pr-img-area img { transform: scale(1.05); }
+
+/* Lưới dự phòng: khi owlCarousel chưa/không khởi tạo được, xếp 4 cột
+   thay vì để mỗi thẻ chiếm trọn chiều rộng. */
+.slider-items:not(.owl-carousel) {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+.slider-items:not(.owl-carousel) > .product-item {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+/* Tên sản phẩm: cho 2 dòng thay vì cắt cụt 1 dòng */
+.item-inner .item-info { padding: 14px 12px 0; }
+.item-inner .item-info .item-title a {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    overflow: hidden;
+    padding: 0;
+    min-height: 40px;
+    line-height: 20px;
+    color: var(--vit-ink);
+    transition: color var(--vit-ease);
+}
+.item-inner .item-info .item-title a:hover { color: var(--vit-primary); }
+
+.icon-new-label.new-left {
+    border-radius: 999px;
+    padding: 2px 12px;
+    font-size: 12px;
+    background: var(--vit-cta);
+}
+
+/* ---------- 5. Nut chung ---------- */
+.item-inner .item-info .add-to-cart {
+    border-radius: var(--vit-radius);
+    transition: background-color var(--vit-ease), color var(--vit-ease);
+}
+
+/* ---------- 6. DataTables, Phân trang & Nội dung bài viết (.std, .about-page) ---------- */
+/* Bang tai lieu bao gia (DataTables) */
+.table-responsive .table.display {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--vit-border);
+    border-radius: var(--vit-radius);
+    overflow: hidden;
+}
+.table.display thead th {
+    background: var(--vit-navy);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 16px;
+    border: 0 !important;
+}
+.table.display tbody td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    border-top: 1px solid var(--vit-border);
+}
+.table.display tbody tr:hover {
+    background: var(--vit-bg-soft);
+}
+.btn-download-doc {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--vit-cta);
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background var(--vit-ease), transform var(--vit-ease);
+}
+.btn-download-doc:hover {
+    background: var(--vit-cta-d);
+    transform: translateY(-1px);
+}
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid var(--vit-border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    outline: none;
+    margin-left: 8px;
+}
+.dataTables_wrapper .dataTables_filter input:focus {
+    border-color: var(--vit-navy);
+}
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid var(--vit-border);
+    border-radius: 6px;
+    padding: 4px 8px;
+    outline: none;
+}
+.dataTables_wrapper .pagination > .active > a,
+.dataTables_wrapper .pagination > .active > span {
+    background-color: var(--vit-navy) !important;
+    border-color: var(--vit-navy) !important;
+}
+
+/* Noi dung bai viet CKEditor */
+.about-page,
+.product-overview-tab .std {
+    line-height: 1.8;
+    font-size: 15px;
+    color: #334155;
+    word-break: break-word;
+}
+.about-page h1,
+.about-page h2,
+.about-page h3,
+.std h2,
+.std h3 {
+    color: var(--vit-navy);
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+.about-page img,
+.std img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 6px;
+    margin: 12px 0;
+}
+.about-page table,
+.std table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+.about-page table td,
+.about-page table th,
+.std table td,
+.std table th {
+    border: 1px solid var(--vit-border);
+    padding: 8px 12px;
+}
+
+/* Phan trang chung */
+.pagination-area .pagination > .active > a,
+.pagination-area .pagination > .active > span {
+    background-color: var(--vit-navy);
+    border-color: var(--vit-navy);
+}
+.pagination-area .pagination > li > a {
+    color: var(--vit-navy);
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+/* ---------- 7. Tôn trọng thiết lập giảm chuyển động ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .vit-quote,
+    .product-item .item-inner,
+    .product-item .pr-img-area img { transition: none; }
+    .vit-quote:hover { transform: none; }
+    .product-item .item-inner:hover { transform: none; }
+    .product-item .item-inner:hover .pr-img-area img { transform: none; }
+}
+
+/* ---------- 8. Responsive ---------- */
+/* Laptop 13-15" */
+@media (max-width: 1199px) {
+    :root { --vit-thumb-h: 220px; }
+}
+/* Tablet ngang / man hinh nho */
+@media (max-width: 991px) {
+    :root { --vit-thumb-h: 200px; }
+
+    /* 768-991px: BS3 van hien thanh menu ngang (.hidden-xs chi an duoi 768).
+       Container chi con 750px nen phai thu gon, neu khong muc cuoi ("Lien he")
+       bi day tran ra ngoai mep phai - flex nowrap khong tu xuong dong. */
+    nav.vit-nav > .container > .row > .mega-container {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+    }
+    nav.vit-nav .mega-menu-category { min-width: 240px; }
+    nav.vit-nav .mtmegamenu > ul > li { margin-right: 12px; }
+    nav.vit-nav .mtmegamenu .mt-root-item > a .title span { font-size: 13px; }
+    nav.vit-nav .mega-menu-title h3 { font-size: 13px; padding: 0 12px; }
+
+    .vit-header { gap: 20px; }
+    .vit-logo img { height: 54px; }
+    .vit-tagline { display: none; }
+    .vit-hotline__text small { display: none; }
+    .vit-quote { padding: 0 16px; font-size: 13px; }
+    .slider-items:not(.owl-carousel) > .product-item { flex: 0 0 33.3333%; max-width: 33.3333%; }
+}
+/* Mobile ngang / tablet dung - luoi 2 cot */
+@media (max-width: 767px) {
+    :root { --vit-thumb-h: 180px; }
+
+    nav.vit-nav { position: static; }          /* tránh chiếm chỗ màn hình nhỏ */
+    .vit-header {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 14px 0;
+    }
+    .vit-header__brand { flex: 1 1 auto; }
+    .vit-header__cta { flex: 0 0 auto; gap: 10px; }
+    .vit-header__search { flex: 1 1 100%; order: 3; }
+    .vit-search { max-width: none; height: 42px; }
+    .vit-logo img { height: 46px; }
+    .vit-hotline__text { display: none; }
+    .vit-quote { height: 40px; }
+    .vit-mini-logo, .vit-nav-call { display: none !important; }
+    .product-item .pr-img-area img { padding: 8px; }
+    .slider-items:not(.owl-carousel) > .product-item { flex: 0 0 50%; max-width: 50%; }
+    .jtv-featured-pro,
+    .jtv-latest-blog { padding-top: 24px; padding-bottom: 24px; }
+}
+/* Mobile doc - luoi 1 cot, the rong het man hinh nen khung cao hon cho can doi */
+@media (max-width: 479px) {
+    :root { --vit-thumb-h: 220px; }
+
+    .vit-quote { padding: 0 14px; font-size: 12px; }
+    .slider-items:not(.owl-carousel) > .product-item { flex: 0 0 100%; max-width: 100%; }
+}
