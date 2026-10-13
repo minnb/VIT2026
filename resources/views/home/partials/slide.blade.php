@@ -7,16 +7,7 @@
         <div class="vit-hero-slider owl-carousel">
           @foreach($slides as $value)
             @php
-                $slidePath = $value->image;
-                if (!empty($slidePath) && file_exists(base_path($slidePath))) {
-                    $slideSrc = asset($slidePath);
-                } elseif (!empty($slidePath) && file_exists(public_path($slidePath))) {
-                    $slideSrc = asset($slidePath);
-                } else {
-                    // Fallback sang ảnh thực tế nhà máy / sản phẩm của VITDUCT
-                    $factoryIndex = (($loop->index) % 9) + 1;
-                    $slideSrc = asset("home/images/factory/{$factoryIndex}.jpg");
-                }
+                $slideSrc = !empty($value->image) ? getImage($value->image) : asset('home/images/logo.jpg');
             @endphp
             <div class="vit-hero-slide">
               <img src="{{ $slideSrc }}"

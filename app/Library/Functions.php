@@ -54,7 +54,7 @@ function getImageInContent($content){
 	}
 
 	if(empty($first_img)){
-    $first_img = "http://vitduct.com.vn/public/home/images/logoVIT.png";
+    $first_img = asset('home/images/logo.jpg');
 	}
 	
 	if (strlen(strstr($first_img, "youtube")) > 0) {
@@ -136,6 +136,14 @@ function getImage($link){
   if ($link === '') {
     return asset(config('upload.placeholder'));
   }
+
+  // Chuyển http sang https cho tên miền cũ để tránh Mixed Content
+  if (stripos($link, 'http://vitduct.com.vn') === 0 || stripos($link, 'http://www.vitduct.com.vn') === 0) {
+    $link = preg_replace('#^http://#i', 'https://', $link);
+  }
+
+  // Chuyển storage/app/public/ thành storage/ vì public/storage là symlink trỏ vào storage/app/public
+  $link = str_replace('storage/app/public/', 'storage/', $link);
 
   if (preg_match('#^https?://#i', $link)) {
     return function_exists('seo_abs') ? seo_abs($link) : $link;
