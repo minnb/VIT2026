@@ -1,8 +1,10 @@
 @extends('home.layouts.master')
 
-@section('title', 'Báo giá & Catalog sản phẩm')
+@section('title', 'Báo giá & Catalog sản phẩm ống gió, van gió')
 
-@section('meta_description', 'Tải miễn phí báo giá và catalog sản phẩm VITDUCT: ống thông gió, van gió, cửa gió, lò xo chống rung giảm chấn.')
+@section('meta_description', 'Tải miễn phí bảng báo giá và tài liệu kỹ thuật catalog các sản phẩm ống gió, van gió, cửa gió, phụ kiện thông gió do VITDUCT sản xuất mới nhất.')
+
+@section('canonical', seo_canonical(route('get.document.all')))
 
 @push('styles')
 <link rel="preconnect" href="https://cdn.datatables.net" crossorigin>
@@ -19,6 +21,7 @@
           <div class="my-account">
             <div class="page-title">
               <h1>Báo giá &amp; Catalog sản phẩm</h1>
+              <h2 class="sr-only">Bảng danh mục tài liệu kỹ thuật và báo giá vật tư</h2>
             </div>
             <div class="table-responsive">
               <table id="example1" class="table table-bordered table-hover display">

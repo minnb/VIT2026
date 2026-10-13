@@ -1,8 +1,8 @@
 @extends('home.layouts.master')
 
-@section('title', $cate_name ?? 'Sản phẩm')
+@section('title', ($cate_name ?? 'Sản phẩm') . ' - Báo giá & Tiêu chuẩn kỹ thuật' . ((int) request('page') > 1 ? ' - Trang ' . (int) request('page') : ''))
 
-@section('meta_description', 'Danh mục ' . ($cate_name ?? 'sản phẩm') . ' do VITDUCT sản xuất. Xem thông số, hình ảnh và liên hệ nhận báo giá.')
+@section('meta_description', 'Sản xuất và cung cấp ' . mb_strtolower($cate_name ?? 'sản phẩm', 'UTF-8') . ' tiêu chuẩn ISO/PCCC, đa dạng quy cách, giá tại xưởng. Nhận gia công theo yêu cầu, giao hàng toàn quốc.')
 
 {{-- Canonical dựng lại từ slug chuẩn: route /{id}/{title} không kiểm tra {title} nên mọi slug sai đều trả cùng nội dung --}}
 @section('canonical', seo_canonical(route('get.product.cate', ['id' => fencrypt($id), 'name' => makeUnicode($cate_name)]))
@@ -42,6 +42,7 @@
             <div class="product-grid-area">
               <div class="page-title">
                 <h1>{{ $cate_name ?? '' }}</h1>
+                <h2 class="sr-only">Danh sách {{ $cate_name ?? 'sản phẩm' }} do VITDUCT sản xuất</h2>
               </div>
               <ul class="products-grid">
                 @forelse($data as $value)

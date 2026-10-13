@@ -1,8 +1,10 @@
 @extends('home.layouts.master')
 
-@section('title', 'Dự án tiêu biểu')
+@section('title', 'Dự án thi công cơ điện & hệ thống thông gió' . ((int) request('page') > 1 ? ' - Trang ' . (int) request('page') : ''))
 
-@section('meta_description', 'Các dự án tiêu biểu VITDUCT đã thi công: hệ thống thông gió, điều hòa không khí và hệ thống ME cho tòa nhà và nhà máy công nghiệp.')
+@section('meta_description', 'Tổng hợp các dự án tiêu biểu VITDUCT đã thi công: hệ thống thông gió, điều hòa không khí và cơ điện ME cho các tòa nhà, khu đô thị và nhà máy công nghiệp.')
+
+@section('canonical', seo_canonical(route('get.project.all')) . ((int) request('page') > 1 ? '?page=' . (int) request('page') : ''))
 
 @section('content')
   @include('home.partials.breadcrumbs', ['items' => [['label' => 'Dự án tiêu biểu']]])
@@ -35,6 +37,7 @@
             <div class="product-grid-area">
               <div class="page-title">
                 <h1>Dự án tiêu biểu</h1>
+                <h2 class="sr-only">Hạng mục công trình và dự án tiêu biểu VITDUCT đã thi công</h2>
               </div>
               <ul class="products-grid">
                 @forelse($data as $value)

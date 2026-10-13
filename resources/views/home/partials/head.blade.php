@@ -26,14 +26,14 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="{{ asset('public/favicon.ico') }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/assets/icons/favicon-32x32.png') }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/assets/icons/favicon-16x16.png') }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('public/assets/icons/apple-touch-icon.png') }}">
-<link rel="manifest" href="{{ asset('public/site.webmanifest') }}">
+<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/icons/favicon-32x32.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/icons/favicon-16x16.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/icons/apple-touch-icon.png') }}">
+<link rel="manifest" href="{{ asset('site.webmanifest') }}">
 <meta name="theme-color" content="#2F5085">
 <meta name="msapplication-TileColor" content="#2F5085">
-<meta name="msapplication-TileImage" content="{{ asset('public/assets/icons/android-chrome-192x192.png') }}">
+<meta name="msapplication-TileImage" content="{{ asset('assets/icons/android-chrome-192x192.png') }}">
 
 <title>{{ $seoFull }}</title>
 <meta name="description" content="{{ $seoDesc }}">
@@ -68,8 +68,8 @@
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
 <link rel="dns-prefetch" href="https://sp.zalo.me">
 {{-- Gan ?v=<thoi diem sua file> de trinh duyet khong dung ban CSS cu trong cache --}}
-<link rel="stylesheet" href="{{ asset_v('public/home/style.css') }}">
-<link rel="stylesheet" href="{{ asset_v('public/home/css/vit-ui.css') }}">
+<link rel="stylesheet" href="{{ asset_v('home/style.css') }}">
+<link rel="stylesheet" href="{{ asset_v('home/css/vit-ui.css') }}">
 @stack('styles')
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

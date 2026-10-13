@@ -455,6 +455,7 @@ function seo_description($html, $limit = 160, $default = null)
     $text = strip_tags((string) $html);
     $text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
     $text = preg_replace('/\s+/u', ' ', $text);
+    $text = preg_replace('/^[\s\*\-\–\—\•\:\.]+/u', '', $text);
     $text = trim((string) $text);
 
     if ($text === '') {
@@ -509,7 +510,7 @@ function seo_content($html, $fallbackAlt = '')
             if (!$img->hasAttribute('decoding')) {
                 $img->setAttribute('decoding', 'async');
             }
-            if (!$img->hasAttribute('alt')) {
+            if (!$img->hasAttribute('alt') || trim($img->getAttribute('alt')) === '') {
                 $img->setAttribute('alt', $fallbackAlt);
             }
         }

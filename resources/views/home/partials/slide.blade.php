@@ -15,7 +15,7 @@
                 } else {
                     // Fallback sang ảnh thực tế nhà máy / sản phẩm của VITDUCT
                     $factoryIndex = (($loop->index) % 9) + 1;
-                    $slideSrc = asset("public/home/images/factory/{$factoryIndex}.jpg");
+                    $slideSrc = asset("home/images/factory/{$factoryIndex}.jpg");
                 }
             @endphp
             <div class="vit-hero-slide">

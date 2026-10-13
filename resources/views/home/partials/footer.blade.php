@@ -58,7 +58,7 @@
                      thong, va cong 443 ben ho khong phan hoi -> anh bi mat.
                      Quy dinh chi bat buoc logo co lien ket toi trang thong bao. --}}
                 <a title="Xem thông báo website với Bộ Công Thương" target="_blank" rel="noopener" href="https://online.gov.vn/Home/WebDetails/53965">
-                  <img src="{{ asset_v('public/home/images/bo-cong-thuong.png') }}"
+                  <img src="{{ asset_v('home/images/bo-cong-thuong.png') }}"
                        alt="Đã thông báo với Bộ Công Thương"
                        width="132" height="50" loading="lazy" decoding="async">
                 </a>

@@ -309,6 +309,7 @@ nav.vit-nav .mtmegamenu > ul > li:last-child { margin-right: 0; }
 /* O "Danh muc" lam diem nhan xanh la */
 nav.vit-nav .mega-menu-title,
 nav.vit-nav .mega-menu-title h3,
+nav.vit-nav .mega-menu-title .mega-menu-heading,
 nav.vit-nav .navleft-container .mega-menu-title {
     background: var(--vit-green);
     border: 0;
@@ -318,7 +319,8 @@ nav.vit-nav .navleft-container .mega-menu-title {
     display: flex;
     align-items: center;
 }
-nav.vit-nav .mega-menu-title h3 {
+nav.vit-nav .mega-menu-title h3,
+nav.vit-nav .mega-menu-title .mega-menu-heading {
     margin: 0;
     padding: 0 15px;
     height: var(--vit-nav-h);
@@ -336,7 +338,8 @@ nav.vit-nav .mega-menu-title h3 {
     justify-content: space-between;
     gap: 14px;   /* chua chu va icon dinh nhau khi o "Danh muc" co lai theo noi dung */
 }
-nav.vit-nav .mega-menu-title h3::after {
+nav.vit-nav .mega-menu-title h3::after,
+nav.vit-nav .mega-menu-title .mega-menu-heading::after {
     content: "\f0c9";
     font-family: 'FontAwesome';
     font-size: 16px;
@@ -348,7 +351,8 @@ nav.vit-nav .mega-menu-title h3::after {
     color: #fff;
 }
 nav.vit-nav .mega-menu-title:hover,
-nav.vit-nav .mega-menu-title:hover h3 { background: var(--vit-green-d); }
+nav.vit-nav .mega-menu-title:hover h3,
+nav.vit-nav .mega-menu-title:hover .mega-menu-heading { background: var(--vit-green-d); }
 
 /* Mega Menu Category Dropdown */
 nav.vit-nav .mega-menu-category {
@@ -1023,7 +1027,8 @@ nav.vit-nav.is-stuck .vit-nav-call:hover { background: var(--vit-cta-d); text-de
     nav.vit-nav .mega-menu-category { min-width: 240px; }
     nav.vit-nav .mtmegamenu > ul > li { margin-right: 12px; }
     nav.vit-nav .mtmegamenu .mt-root-item > a .title span { font-size: 13px; }
-    nav.vit-nav .mega-menu-title h3 { font-size: 13px; padding: 0 12px; }
+    nav.vit-nav .mega-menu-title h3,
+    nav.vit-nav .mega-menu-title .mega-menu-heading { font-size: 13px; padding: 0 12px; }
 
     .vit-header { gap: 20px; }
     .vit-logo img { height: 54px; }

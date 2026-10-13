@@ -18,6 +18,7 @@
               '@type'    => 'ListItem',
               'position' => $listStart + $listIndex,
               'name'     => $listItem['name'],
+              'item'     => seo_canonical($listItem['url']),
               'url'      => seo_canonical($listItem['url']),
           ];
       }

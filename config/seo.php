@@ -30,12 +30,12 @@ return [
     | Giá trị mặc định khi trang không khai @section riêng.
     */
     'default_title'       => 'CÔNG TY CỔ PHẦN VITDUCT',
-    'default_description' => 'VITDUCT sản xuất ống thông gió, van gió, cửa gió, lò xo chống rung giảm chấn; cung cấp và thi công hệ thống điều hòa không khí, thông gió và hệ thống ME cho tòa nhà, nhà máy công nghiệp.',
+    'default_description' => 'Nhà sản xuất ống gió, van gió, cửa gió tiêu chuẩn ISO. Thi công lắp đặt hệ thống thông gió, điều hòa không khí và cơ điện ME trọn gói cho công trình.',
 
     /*
     | Ảnh chia sẻ mạng xã hội mặc định (đường dẫn tương đối tính từ gốc site).
     */
-    'default_og_image' => '/public/home/images/logo.jpg',
+    'default_og_image' => '/home/images/logo.jpg',
     'og_image_width'   => 592,
     'og_image_height'  => 592,
 
@@ -47,7 +47,7 @@ return [
     */
     'organization' => [
         'legal_name'    => 'CÔNG TY CỔ PHẦN VITDUCT',
-        'logo'          => '/public/home/images/logo.jpg',
+        'logo'          => '/home/images/logo.jpg',
         'founding_date' => '2001',
         'email'         => 'contact@vitduct.com.vn',
         'phones'        => ['024 3645 4199'],

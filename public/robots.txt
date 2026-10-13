@@ -1,2 +1,19 @@
+# robots.txt - vitduct.com.vn
+#
+# Nguyen tac: KHONG dat Disallow cho trang da co <meta name="robots" content="noindex">.
+# Bot ton trong Disallow se khong crawl duoc trang do, nen KHONG BAO GIO doc thay the
+# noindex -> neu trang bi link tu ben ngoai, Google van co the index dang URL-only.
+# Voi moi trang, chi chon MOT trong hai co che:
+#
+#   - /login, /register, /password/*  -> de crawl duoc, dung <meta noindex,nofollow>
+#                                        (khai o resources/views/layouts/app.blade.php)
+#   - /result (ket qua tim kiem)      -> de crawl duoc, dung @section('robots','noindex,follow')
+#                                        (route hien chi nhan POST, GET tra 405)
+#   - Khu quan tri                    -> chan bang Disallow o duoi, vi bot chi nhan 302 ve
+#                                        /login, khong co noi dung de doc noindex
+
 User-agent: *
-Disallow:
+Disallow: /dashboard
+Disallow: /logout
+
+Sitemap: https://vitduct.com.vn/sitemap.xml

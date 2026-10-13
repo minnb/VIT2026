@@ -7,7 +7,7 @@
         <ul class="list-inline float-right mb-0">
             <li class="list-inline-item dropdown notif">
                 <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ asset('public/assets/images/avatars/admin.png') }}" alt="Ảnh đại diện" class="avatar-rounded">
+                    <img src="{{ asset('assets/images/avatars/admin.png') }}" alt="Ảnh đại diện" class="avatar-rounded">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown">
                     <div class="dropdown-item noti-title">

@@ -132,23 +132,23 @@
 ## 🧪 GIAI ĐOẠN 6: KIỂM THỬ TOÀN DIỆN & DEPLOYMENT READY
 
 ### Kiểm thử Giao diện Public:
-- [ ] **6.1. Trang chủ** (Slide banner, menu danh mục, sản phẩm nổi bật, tin tức, footer)
-- [ ] **6.2. Trang danh mục sản phẩm** (Hiển thị lưới sản phẩm, phân trang)
-- [ ] **6.3. Trang chi tiết sản phẩm** (Thông tin kỹ thuật, thư viện ảnh phóng to, sản phẩm liên quan)
-- [ ] **6.4. Trang Dự án & Tài liệu** (Hiển thị danh sách và tải file đính kèm)
-- [ ] **6.5. Tìm kiếm sản phẩm** (Tìm theo từ khóa)
-- [ ] **6.6. Đường dẫn `/sitemap.xml`** (Định dạng XML chuẩn)
+- [x] **6.1. Trang chủ** (Slide banner, menu danh mục, sản phẩm nổi bật, tin tức, footer)
+- [x] **6.2. Trang danh mục sản phẩm** (Hiển thị lưới sản phẩm, phân trang)
+- [x] **6.3. Trang chi tiết sản phẩm** (Thông tin kỹ thuật, thư viện ảnh phóng to, sản phẩm liên quan)
+- [x] **6.4. Trang Dự án & Tài liệu** (Hiển thị danh sách và tải file đính kèm)
+- [x] **6.5. Tìm kiếm sản phẩm** (Tìm theo từ khóa)
+- [x] **6.6. Đường dẫn `/sitemap.xml`** (Định dạng XML chuẩn)
 
 ### Kiểm thử Khu Quản trị (Admin):
-- [ ] **6.7. Đăng nhập / Đăng xuất Admin**
-- [ ] **6.8. Thêm mới / Chỉnh sửa / Xóa Sản phẩm** kèm upload hình ảnh
-- [ ] **6.9. Thêm mới / Chỉnh sửa Danh mục**
-- [ ] **6.10. Cập nhật Hotline & Thông tin Công ty**
+- [x] **6.7. Đăng nhập / Đăng xuất Admin**
+- [x] **6.8. Thêm mới / Chỉnh sửa / Xóa Sản phẩm** kèm upload hình ảnh
+- [x] **6.9. Thêm mới / Chỉnh sửa Danh mục**
+- [x] **6.10. Cập nhật Hotline & Thông tin Công ty**
 
 ### Chuẩn bị Triển khai Hosting PHP 8.3:
-- [ ] **6.11. Chạy lệnh tối ưu hóa hiệu năng**:
+- [x] **6.11. Chạy lệnh tối ưu hóa hiệu năng**:
   - `php artisan config:cache`
   - `php artisan route:cache`
   - `php artisan view:cache`
-- [ ] **6.12. Soát lỗi trong `storage/logs/laravel.log`** (Không còn Warning/Error PHP 8.3)
-- [ ] **6.13. Đóng gói mã nguồn và sẵn sàng deploy**
+- [x] **6.12. Soát lỗi trong `storage/logs/laravel.log`** (Không còn Warning/Error PHP 8.3)
+- [x] **6.13. Đóng gói mã nguồn và sẵn sàng deploy**

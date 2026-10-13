@@ -21,6 +21,8 @@
 
         if (!empty($crumb['url'])) {
             $crumbEntry['item'] = seo_canonical($crumb['url']);
+        } else {
+            $crumbEntry['item'] = seo_current_url();
         }
 
         $crumbList[] = $crumbEntry;

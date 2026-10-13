@@ -83,7 +83,7 @@
       <div class="row">
         {{-- Chi hien khi nav da thu gon (class .is-stuck do vit-ui.js gan) --}}
         <a class="vit-mini-logo" href="{{ route('index') }}" aria-hidden="true" tabindex="-1">
-          <img src="{{ asset('public/home/images/logo.jpg') }}" alt="" width="592" height="592" loading="lazy" decoding="async">
+          <img src="{{ asset('home/images/logo.jpg') }}" alt="" width="592" height="592" loading="lazy" decoding="async">
         </a>
         <div class="mm-toggle-wrap">
           <div class="mm-toggle" role="button" tabindex="0" aria-label="Mở danh mục" aria-expanded="false" aria-controls="mobile-menu"><i class="fa fa-align-justify" aria-hidden="true"></i></div>
@@ -93,7 +93,7 @@
           <div class="navleft-container">
             <div class="mega-menu-title" role="button" tabindex="0"
                  aria-expanded="false" aria-controls="mega-menu-category">
-              <h3><span>Danh mục</span></h3>
+              <div class="mega-menu-heading"><span>Danh mục</span></div>
             </div>
             <div class="mega-menu-category" id="mega-menu-category">
               <ul class="nav">

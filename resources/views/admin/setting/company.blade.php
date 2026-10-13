@@ -87,5 +87,5 @@
 @endsection
 
 @push('scripts')
-  <script src="{{ asset('public/js/angular/controller/SettingController.js') }}"></script>
+  <script src="{{ asset('js/angular/controller/SettingController.js') }}"></script>
 @endpush

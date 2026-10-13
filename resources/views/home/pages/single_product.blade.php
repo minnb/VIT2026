@@ -22,17 +22,19 @@
     // Khong khai 'offers' vi bang posts khong co cot gia - khai Offer rong se bi Google bao loi.
     // Cung khong khai aggregateRating: so sao tren giao dien la trang tri, khong phai danh gia that.
     $pdSchema = [
-        '@context'     => 'https://schema.org',
-        '@type'        => 'Product',
-        '@id'          => $pdUrl . '#product',
-        'name'         => $data['title'],
-        'sku'          => (string) $data['id'],
-        'url'          => $pdUrl,
-        'image'        => $pdImage,
-        'description'  => seo_description($data['content'] ?? '', 300),
-        'category'     => $cateName,
-        'brand'        => ['@type' => 'Brand', 'name' => config('seo.brand')],
-        'manufacturer' => ['@id' => config('seo.base_url') . '/#organization'],
+        '@context'         => 'https://schema.org',
+        '@type'            => 'Product',
+        '@id'              => $pdUrl . '#product',
+        'mainEntityOfPage' => $pdUrl,
+        'name'             => $data['title'],
+        'sku'              => (string) $data['id'],
+        'url'              => $pdUrl,
+        'image'            => $pdImage,
+        'description'      => seo_description($data['content'] ?? '', 300, $data['title'] . ' do VITDUCT sản xuất theo tiêu chuẩn kỹ thuật.'),
+        'category'         => $cateName,
+        'brand'            => ['@type' => 'Brand', 'name' => config('seo.brand')],
+        'manufacturer'     => ['@id' => config('seo.base_url') . '/#organization'],
+        'itemCondition'    => 'https://schema.org/NewCondition',
     ];
 @endphp
 <script type="application/ld+json">{!! json_encode($pdSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) !!}</script>
