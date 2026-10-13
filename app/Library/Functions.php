@@ -512,6 +512,19 @@ function seo_content($html, $fallbackAlt = '')
         }
 
         foreach ($doc->getElementsByTagName('img') as $img) {
+            $src = $img->getAttribute('src');
+            if ($src !== '') {
+                // Chuyển http sang https cho tên miền cũ để tránh Mixed Content
+                if (stripos($src, 'http://vitduct.com.vn') === 0 || stripos($src, 'http://www.vitduct.com.vn') === 0) {
+                    $src = preg_replace('#^http://#i', 'https://', $src);
+                }
+                // Chuẩn hoá storage/app/public/ thành storage/ vì public/storage là symlink
+                if (strpos($src, 'storage/app/public/') !== false) {
+                    $src = str_replace('storage/app/public/', 'storage/', $src);
+                }
+                $img->setAttribute('src', $src);
+            }
+
             if (!$img->hasAttribute('loading')) {
                 $img->setAttribute('loading', 'lazy');
             }

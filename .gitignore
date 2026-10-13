@@ -1,166 +1,22 @@
-###############################################################################
-# Laravel / PHP
-###############################################################################
-/vendor/
-/node_modules/
-/tests/
-/public/build/
+/node_modules
 /public/hot
 /public/storage
-/public/fonts-manifest.dev.json
-
-# Compiled views cache
-/storage/framework/views/*.php
-
-# Session files
-/storage/framework/sessions/
-
-# Cache
-/storage/framework/cache/
-/storage/framework/cache/data/
-/storage/framework/cache/locks/
-
-# Testing
-/storage/framework/testing/
-
-# Logs
-*.log
-/storage/logs/
-
-# Laravel Pail (real-time log)
-/storage/pail/
-
-# Uploaded / user files — không đưa media người dùng lên git
-/storage/app/public/
-/storage/app/private/
-
-# Chỉ giữ lại các .gitignore placeholder bên trong storage/
-!/storage/app/.gitignore
-!/storage/app/public/.gitignore
-!/storage/app/private/.gitignore
-!/storage/framework/.gitignore
-!/storage/framework/cache/.gitignore
-!/storage/framework/cache/data/.gitignore
-!/storage/framework/cache/locks/.gitignore
-!/storage/framework/sessions/.gitignore
-!/storage/framework/testing/.gitignore
-!/storage/framework/views/.gitignore
-!/storage/logs/.gitignore
-!/bootstrap/cache/.gitignore
-
-# Bootstrap cache
-/bootstrap/cache/*.php
-!/bootstrap/cache/.gitignore
-
-###############################################################################
-# Thông tin nhạy cảm / Credentials
-###############################################################################
-.env
-.env.*
-!.env.example          # Chỉ cho phép file mẫu
-.env.backup
-.env.production
-.env.staging
-.env.local
-
-# SSH / Private keys
-*.pem
-*.key
-*.p12
-*.pfx
 /storage/*.key
-/auth.json
-
-# Secrets / API tokens
-secrets.json
-*.secret
-
-###############################################################################
-# PHPUnit / Testing
-###############################################################################
+/public/uploads
+/project
+/vendor
+/storage
+.htaccess
+/.htaccess
+public/.htaccess
+/public/.htaccess
+.env
 .phpunit.result.cache
-.phpunit.cache/
-/.phpunit.cache/
-coverage/
-.coverage/
-clover.xml
-
-###############################################################################
-# Composer
-###############################################################################
-# Giữ composer.lock (cần thiết cho reproducible builds)
-# Không commit vendor/
-
-###############################################################################
-# NPM / Yarn / Bun
-###############################################################################
-/node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-package-lock.json   # bỏ comment nếu dùng npm lock
-# yarn.lock          # bỏ comment nếu dùng yarn
-
-###############################################################################
-# IDE & Editor
-###############################################################################
-/.idea/
-/.vscode/
-/.nova/
-/.zed/
-/.cursor/
-*.sublime-project
-*.sublime-workspace
-.phpactor.json
-_ide_helper.php
-_ide_helper_models.php
-.phpstorm.meta.php
-
-###############################################################################
-# OS / System
-###############################################################################
-.DS_Store
-Thumbs.db
-Desktop.ini
-ehthumbs.db
-*.swp
-*~
-
-###############################################################################
-# Homestead / Vagrant
-###############################################################################
+NUL
 Homestead.json
 Homestead.yaml
-Vagrantfile
+npm-debug.log
+yarn-error.log
 
-###############################################################################
-# Docker (local override)
-###############################################################################
-docker-compose.override.yml
-.dockerenv
-
-###############################################################################
-# Database dumps / Backups
-###############################################################################
-*.sql
-*.sql.gz
-*.dump
-/database/dumps/
-/database/backups/
-
-###############################################################################
-# Codex / AI tools
-###############################################################################
-/.codex/
-.claude/               # Claude Code session state
-# Nhưng giữ lại CLAUDE.md và AGENTS.md đã commit
-!CLAUDE.md
-!AGENTS.md
-
-###############################################################################
-# Misc build artifacts
-###############################################################################
-/public/js/app.js
-/public/css/app.css
-mix-manifest.json
+# Dump DB chua email + hash mat khau that - khong commit
+/database/*.sql
